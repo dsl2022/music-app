@@ -1,0 +1,40 @@
+# Ignore node_modules and build artifacts in frontend
+/frontend/node_modules/
+/frontend/build/
+/frontend/dist/
+/frontend/.env
+/frontend/.DS_Store
+/frontend/npm-debug.log
+/frontend/yarn-error.log
+/frontend/.parcel-cache/
+/frontend/.next/
+/frontend/.turbo/
+/frontend/.vite/
+
+# Ignore logs and config in root
+*.log
+.env
+.DS_Store
+
+# Ignore Visual Studio + .NET files in backend
+/backend/bin/
+/backend/obj/
+/backend/.vs/
+/backend/*.user
+/backend/*.suo
+/backend/*.userosscache
+/backend/*.sln.docstates
+/backend/.vscode/
+/backend/Properties/launchSettings.json
+
+# Ignore common IDE/editor folders
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore OS-specific files
+Thumbs.db
+ehthumbs.db
+desktop.ini
+**/.vs/
