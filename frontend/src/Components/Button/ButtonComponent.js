@@ -1,22 +1,21 @@
-// 5/19 revision:
-
 import React, { useState } from 'react';
 
 function ButtonComponent() {
   const [name, setName] = useState('');
   const [submittedName, setSubmittedName] = useState('');
-  const [step, setStep] = useState(1); // Controls which screen to show
+  const [step, setStep] = useState(1);
   const [projectName, setProjectName] = useState('');
   const [finalProjectName, setFinalProjectName] = useState('');
+  const [notationType, setNotationType] = useState('');
 
   const handleNameSubmit = () => {
     setSubmittedName(name);
-    setStep(2); // Go to next step: project naming
+    setStep(2);
   };
 
   const handleProjectSubmit = () => {
     setFinalProjectName(projectName);
-    setStep(3); // Optional: step 3 could be a summary or next feature
+    setStep(3);
   };
 
   return (
@@ -51,8 +50,32 @@ function ButtonComponent() {
       {step === 3 && (
         <div>
           <h2>Great!</h2>
-          <p>{submittedName}, your project is called <strong>{finalProjectName}</strong>.</p>
-          {/* Here you can add more steps later */}
+          <p>
+            {submittedName}, your project is called <strong>{finalProjectName}</strong>.
+          </p>
+          <button onClick={() => setStep(4)}>Next</button>
+        </div>
+      )}
+
+      {step === 4 && (
+        <div>
+          <h2>Choose a notation type for your project:</h2>
+          <button
+            onClick={() => {
+              setNotationType('Music Staff');
+              alert('You selected Music Staff!');
+            }}
+          >
+            Music Staff
+          </button>
+          <button
+            onClick={() => {
+              setNotationType('Tablature');
+              alert('You selected Tablature!');
+            }}
+          >
+            Tablature
+          </button>
         </div>
       )}
     </div>
@@ -60,61 +83,3 @@ function ButtonComponent() {
 }
 
 export default ButtonComponent;
-
-
-/* 5/18 revision:
-
-import React, { useState } from 'react';
-
-function ButtonComponent() {
-  const [name, setName] = useState('');
-  const [submittedName, setSubmittedName] = useState('');
-
-  const handleInputChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleSubmit = () => {
-    setSubmittedName(name);
-  };
-
-  return (
-    <div>
-      <h2>Enter your name:</h2>
-      <input
-        type="text"
-        value={name}
-        onChange={handleInputChange}
-        placeholder="Your name"
-      />
-      <button onClick={handleSubmit}>Submit</button>
-
-      {submittedName && (
-        <p>Hello, {submittedName}!</p>
-      )}
-    </div>
-  );
-}
-
-export default ButtonComponent;
-*/
-
-
-/* original code, 5/17: 
-
-import React from 'react';
-
-function ButtonComponent() {
-  const handleClick = () => {
-    alert('Button clicked!');
-  };
-
-  return (
-    <div>
-      <button onClick={handleClick}>Submit</button>
-    </div>
-  );
-}
-
-export default ButtonComponent;
-*/
