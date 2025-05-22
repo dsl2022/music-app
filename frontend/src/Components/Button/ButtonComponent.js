@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import VexFlowComponent from './VexFlowComponent';
 function ButtonComponent() {
   const [name, setName] = useState('');
   const [submittedName, setSubmittedName] = useState('');
@@ -16,6 +16,11 @@ function ButtonComponent() {
   const handleProjectSubmit = () => {
     setFinalProjectName(projectName);
     setStep(3);
+  };
+
+  const handleNotationSelect = (type) => {
+    setNotationType(type);
+    setStep(5);
   };
 
   return (
@@ -60,22 +65,25 @@ function ButtonComponent() {
       {step === 4 && (
         <div>
           <h2>Choose a notation type for your project:</h2>
-          <button
-            onClick={() => {
-              setNotationType('Music Staff');
-              alert('You selected Music Staff!');
-            }}
-          >
+          <button onClick={() => handleNotationSelect('Music Staff')}>
             Music Staff
           </button>
-          <button
-            onClick={() => {
-              setNotationType('Tablature');
-              alert('You selected Tablature!');
-            }}
-          >
+          <button onClick={() => handleNotationSelect('Tablature')}>
             Tablature
           </button>
+        </div>
+      )}
+
+      {step === 5 && notationType === 'Music Staff' && (
+        <div>
+          <h2>Music Staff Notation</h2>
+          <VexFlowComponent />
+        </div>
+      )}
+
+      {step === 5 && notationType === 'Tablature' && (
+        <div>
+          <h2>Guitar Tablature (coming soon!)</h2>
         </div>
       )}
     </div>
