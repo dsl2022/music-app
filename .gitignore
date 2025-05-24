@@ -13,7 +13,6 @@
 
 # Ignore logs and config in root
 *.log
-.env
 .DS_Store
 
 # Ignore Visual Studio + .NET files in backend
@@ -24,12 +23,10 @@
 /backend/*.suo
 /backend/*.userosscache
 /backend/*.sln.docstates
-/backend/.vscode/
 /backend/Properties/launchSettings.json
 
 # Ignore common IDE/editor folders
 .idea/
-.vscode/
 *.sublime-workspace
 *.sublime-project
 
@@ -39,3 +36,9 @@ ehthumbs.db
 desktop.ini
 **/.vs/
 history.txt
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+config.bat
+node_modules
