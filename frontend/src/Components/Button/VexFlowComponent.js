@@ -1,10 +1,16 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Renderer, Stave, StaveNote, Voice, Formatter } from 'vexflow';
 
 const VexFlowComponent = () => {
   const containerRef = useRef(null);
 
+  const [hasRendered, setHasRendered] = useState(false);
   useEffect(() => {
+    console.log('testatthebeginning',hasRendered);
+     if (containerRef.current) {
+      containerRef.current.innerHTML = '';
+    }
+    console.log('testinginthemiddle', hasRendered);
     const renderer = new Renderer(containerRef.current, Renderer.Backends.SVG);
     renderer.resize(500, 200);
     const context = renderer.getContext();
@@ -23,7 +29,9 @@ const VexFlowComponent = () => {
     voice.addTickables(notes);
     new Formatter().joinVoices([voice]).format([voice], 400);
     voice.draw(context, stave);
-  }, []);
+    setHasRendered(true);
+    console.log('testattheend',hasRendered);
+  }, [hasRendered]);
 
   return <div ref={containerRef}></div>;
 };

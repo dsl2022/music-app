@@ -3,7 +3,7 @@ import VexFlowComponent from './VexFlowComponent';
 function ButtonComponent() {
   const [name, setName] = useState('');
   const [submittedName, setSubmittedName] = useState('');
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(5);
   const [projectName, setProjectName] = useState('');
   const [finalProjectName, setFinalProjectName] = useState('');
   const [notationType, setNotationType] = useState('');
@@ -77,7 +77,7 @@ function ButtonComponent() {
       {step === 5 && notationType === 'Music Staff' && (
         <div>
           <h2>Music Staff Notation</h2>
-          <VexFlowComponent />
+          <VexFlowComponent /> 
         </div>
       )}
 
