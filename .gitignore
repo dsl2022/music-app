@@ -39,3 +39,6 @@ ehthumbs.db
 desktop.ini
 **/.vs/
 history.txt
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
