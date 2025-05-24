@@ -1,13 +1,23 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
-import ButtonComponent from './Components/Button/ButtonComponent';
+// import ButtonComponent from './Components/Button/ButtonComponent';
 import VexFlowComponent from './Components/Button/VexFlowComponent';
 function App() {
+  const [notes,setNotes]=useState([]);
+  // starter code for challenge 1
+  const [nameOfNote,setNameOfNote] = useState('')
+    function addNote(){
+      const newNote = { clef: 'treble', keys: [nameOfNote + '/4'], duration: 'q' }
+      setNotes(notes => [...notes, newNote]);
+    }
   return (
     <div className="App">
-      <h1>Music Notation App</h1> {/* Optional heading */}
+      {notes.length}
+      <h1>Music Notation App</h1>
       {/* <ButtonComponent /> */}
-      <VexFlowComponent /> 
+      <button onClick={addNote}>Add note</button>
+      <input/>
+      <VexFlowComponent notes = {notes}/> 
     </div>
   );
 }
