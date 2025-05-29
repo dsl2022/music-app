@@ -6,11 +6,11 @@ const VexFlowComponent = () => {
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState('c/4');
   const [selectedDuration, setSelectedDuration] = useState('q');
-  const [selectedType, setSelectedType] = useState('note'); // 'note' or 'rest'
+  const [selectedType, setSelectedType] = useState('note');
   const [timeSignature, setTimeSignature] = useState('4/4');
 
   const noteOptions = [
-    // Octave 2
+    
     { value: 'c/2', label: 'C2' },
     { value: 'd/2', label: 'D2' },
     { value: 'e/2', label: 'E2' },
@@ -18,7 +18,7 @@ const VexFlowComponent = () => {
     { value: 'g/2', label: 'G2' },
     { value: 'a/2', label: 'A2' },
     { value: 'b/2', label: 'B2' },
-    // Octave 3
+    
     { value: 'c/3', label: 'C3' },
     { value: 'd/3', label: 'D3' },
     { value: 'e/3', label: 'E3' },
@@ -26,7 +26,7 @@ const VexFlowComponent = () => {
     { value: 'g/3', label: 'G3' },
     { value: 'a/3', label: 'A3' },
     { value: 'b/3', label: 'B3' },
-    // Octave 4
+    
     { value: 'c/4', label: 'C4' },
     { value: 'd/4', label: 'D4' },
     { value: 'e/4', label: 'E4' },
@@ -34,7 +34,7 @@ const VexFlowComponent = () => {
     { value: 'g/4', label: 'G4' },
     { value: 'a/4', label: 'A4' },
     { value: 'b/4', label: 'B4' },
-    // Octave 5
+    
     { value: 'c/5', label: 'C5' },
     { value: 'd/5', label: 'D5' },
     { value: 'e/5', label: 'E5' },
@@ -42,7 +42,7 @@ const VexFlowComponent = () => {
     { value: 'g/5', label: 'G5' },
     { value: 'a/5', label: 'A5' },
     { value: 'b/5', label: 'B5' },
-    // Octave 6
+    
     { value: 'c/6', label: 'C6' },
     { value: 'd/6', label: 'D6' },
     { value: 'e/6', label: 'E6' },
@@ -74,7 +74,7 @@ const VexFlowComponent = () => {
   };
 
   const getBeatValue = (duration) => {
-    const baseDuration = duration.replace('r', ''); // Remove 'r' for rests
+    const baseDuration = duration.replace('r', '');
     const beatValues = { 'w': 4, 'h': 2, 'q': 1, '8': 0.5, '16': 0.25 };
     return beatValues[baseDuration] || 1;
   };
@@ -99,7 +99,7 @@ const VexFlowComponent = () => {
   const renderStaff = () => {
     if (!containerRef.current) return;
 
-    // Clear previous rendering
+    
     containerRef.current.innerHTML = '';
 
     const renderer = new Renderer(containerRef.current, Renderer.Backends.SVG);
@@ -107,14 +107,14 @@ const VexFlowComponent = () => {
     
     console.log('Current time signature:', timeSignature, currentTS);
     
-    // Simple beat calculation - always use quarter note as base unit
+    
     const totalBeats = notes.reduce((sum, note) => {
       return sum + getBeatValue(note.duration);
     }, 0);
     
     console.log('Total beats:', totalBeats);
     
-    // Calculate beats per measure in quarter note units
+    
     let quarterNotesPerMeasure;
     if (currentTS.beatValue === 4) {
       quarterNotesPerMeasure = currentTS.beatsPerMeasure;
@@ -135,12 +135,12 @@ const VexFlowComponent = () => {
     renderer.resize(totalWidth, 200);
     const context = renderer.getContext();
 
-    // Create staves (measures)
+    
     const staves = [];
     for (let i = 0; i < measuresNeeded; i++) {
       const stave = new Stave(10 + (i * staveWidth), 40, staveWidth);
       
-      // Add clef and time signature only to first stave
+      
       if (i === 0) {
         stave.addClef('treble').addTimeSignature(timeSignature);
       }
@@ -151,17 +151,17 @@ const VexFlowComponent = () => {
 
     console.log('Notes to render:', notes);
 
-    // Only render notes if there are any
+    
     if (notes.length > 0) {
       try {
-        // Create VexFlow notes
+        
         const vexFlowNotes = notes.map(note => 
           new StaveNote({ clef: 'treble', keys: note.keys, duration: note.duration })
         );
 
         console.log('VexFlow notes created:', vexFlowNotes.length);
 
-        // Use the same logic for ALL time signatures (not just 4/4)
+        
         const measures = [];
         let currentMeasure = [];
         let currentBeats = 0;
@@ -198,8 +198,7 @@ const VexFlowComponent = () => {
         measures.forEach((measureNotes, index) => {
           if (measureNotes.length > 0 && staves[index]) {
             try {
-              // Always use 4/4 voice settings regardless of time signature
-              // This is a workaround for VexFlow's time signature handling
+              
               const voice = new Voice({ 
                 num_beats: 4, 
                 beat_value: 4 
@@ -223,7 +222,7 @@ const VexFlowComponent = () => {
     }
   };
 
-  // Helper function to create rest notes
+  
   const createRests = (beats) => {
     const rests = [];
     let remaining = beats;
