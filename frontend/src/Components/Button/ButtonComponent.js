@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import VexFlowComponent from './VexFlowComponent';
+import VexFlowComponent from '../VexFlowComponent/VexFlowComponent';
 function ButtonComponent() {
   const [name, setName] = useState('');
   const [submittedName, setSubmittedName] = useState('');
